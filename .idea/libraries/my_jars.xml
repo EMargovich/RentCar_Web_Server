@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="my-jars">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/my-jars/cli_new.jar!/" />
+      <root url="jar://$PROJECT_DIR$/my-jars/TCP_2_1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
