@@ -1,9 +1,6 @@
 package com.telran.cars.models;
 
-import com.telran.cars.dto.Driver;
-import com.telran.cars.dto.Model;
-import com.telran.cars.dto.ReturnCarData;
-import com.telran.cars.dto.StatisticsData;
+import com.telran.cars.dto.*;
 import telran.net.protocol.ProtocolJava;
 import telran.net.protocol.RequestJava;
 import telran.net.protocol.ResponseJava;
@@ -74,13 +71,30 @@ public class RentCompanyProtocol implements ProtocolJava {
             case "SAVE":
                 return _save(data);
 
+            // ===== Test =====
+            case CLEAR_COMPANY:
+                return _clear_company();
+
             default:
                 return new ResponseJava(UNKNOWN, null);
+
+
+
         }
     }
 
-    private ResponseJava _driver_cars(Serializable data) {
+    private ResponseJava _clear_company() {
+        company = new RentCompanyEmbedded();
+        return new ResponseJava(OK, null);
+    }
 
+    private ResponseJava _driver_cars(Serializable data) {
+        try {
+            Serializable responseData = (Serializable) company.getCarsByDriver((Long) data);
+            return new ResponseJava(OK, responseData);
+        } catch (Exception e) {
+            return wrongRequest(e.getMessage());
+        }
     }
 
     private ResponseJava _save(Serializable data) {
@@ -117,6 +131,12 @@ public class RentCompanyProtocol implements ProtocolJava {
     }
 
     private ResponseJava _model_cars(Serializable data) {
+        try {
+            Serializable responseData = (Serializable) company.getCarsByModel((String) data);
+            return new ResponseJava(OK, responseData);
+        } catch (Exception e) {
+            return wrongRequest(e.getMessage());
+        }
     }
 
     private ResponseJava _model_remove(Serializable data) {
@@ -199,9 +219,27 @@ public class RentCompanyProtocol implements ProtocolJava {
     }
 
     private ResponseJava _car_remove(Serializable data) {
+        try {
+            Serializable responseData = (Serializable) company.removeCar((String) data);
+            return new ResponseJava(OK, responseData);
+        } catch (Exception e) {
+            return wrongRequest(e.getMessage());
+        }
     }
 
     private ResponseJava _car_rent(Serializable data) {
+        try {
+            RentCarData rentCarData = ((RentCarData) data);
+            Serializable responseData = (Serializable) company.rentCar(
+                    rentCarData.getRegNumber(),
+                    rentCarData.getLicenseId(),
+                    rentCarData.getRentDate(),
+                    rentCarData.getRentDays()
+            );
+            return new ResponseJava(OK, responseData);
+        } catch (Exception e) {
+            return wrongRequest(e.getMessage());
+        }
     }
 
     private ResponseJava _models_profitable(Serializable data) {
@@ -231,8 +269,20 @@ public class RentCompanyProtocol implements ProtocolJava {
     }
 
     private ResponseJava _car(Serializable data) {
+        try {
+            Serializable responseData = (Serializable) company.getCar((String) data);
+            return new ResponseJava(OK, responseData);
+        } catch (Exception e) {
+            return wrongRequest(e.getMessage());
+        }
     }
 
     private ResponseJava _car_add(Serializable data) {
+        try {
+            Serializable responseData = (Serializable) company.addCar((Car) data);
+            return new ResponseJava(OK, responseData);
+        } catch (Exception e) {
+            return wrongRequest(e.getMessage());
+        }
     }
 }

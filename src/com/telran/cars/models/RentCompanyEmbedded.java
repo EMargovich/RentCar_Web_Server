@@ -363,4 +363,10 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 		return new ArrayList<>(models.keySet());
 	}
 
+	//For tests
+	@Override
+	public void clear_company() {
+
+	}
+
 }

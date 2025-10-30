@@ -39,7 +39,5 @@ public class RentCompanyServerAppl {
         executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
         ((Persistable) company).save(FILE_NAME);
         scanner.close();
-
-
     }
 }
