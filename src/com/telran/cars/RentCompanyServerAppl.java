@@ -14,11 +14,10 @@ import java.util.concurrent.TimeUnit;
 
 public class RentCompanyServerAppl {
 
-    static final int N_THREADS = 10;
+    static final int N_THREADS = 12;
     static final String FILE_NAME = "company.data";
-    static final int TIMEOUT = 1000;
+    static final int TIMEOUT = 10000;
     static final int PORT = 30000;
-
 
     public static void main(String[] args) throws Exception {
         IRentCompany company = RentCompanyEmbedded.restoreFromFile(FILE_NAME);

@@ -10,5 +10,10 @@
     <orderEntry type="library" name="my-jars" level="project" />
     <orderEntry type="module" module-name="RentCar_Spring6_API" />
     <orderEntry type="library" name="TCP_2" level="project" />
+    <orderEntry type="library" name="TCP_2_1 (2)" level="project" />
+    <orderEntry type="library" name="TCP_2_1 (3)" level="project" />
+    <orderEntry type="library" name="TCP_2_1" level="project" />
+    <orderEntry type="library" name="TCP_2_1 (2)" level="project" />
+    <orderEntry type="library" name="TCP2_2" level="project" />
   </component>
 </module>
